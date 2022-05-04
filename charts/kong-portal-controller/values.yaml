@@ -1,11 +1,29 @@
 image:
-  url: "some.url.to.image"
+  url: "henrikdk/kong-portal-controller:20220504-8504537"
   pullPolicy: IfNotPresent
 
-imagePullSecrets: []
+# App name used selector for selector labels 
 nameOverride: ""
+
+# Deployment and container name
 fullnameOverride: ""
-namespace: ""
+
+# Specify the ingress suffix (eg sub-domain.domain.tld) of API's deployed to the cluster that this instance of the portal controller will handle.
+# This information is used to enrich the API spec with servers url before submitting it to the kong portal.
+# The controller expects the API's ingresses to be either <service-name>.<namespace>.<suffix> for standalone services.
+# or api.<namespce>.<suffix> in case of merged api.
+ingressSuffix: ""
+
+# Url to the kong admin service of the developer portal that you wish to syncronize.
+kongAdminUrl: ""
+
+# Name of the secret that contains the RBAC token used to access the Kong Admin API. The secret must have the RBAC token provided in the 'token' key.
+kongTokenSecret: ""
+
+# Optional list of namespaces to be monitored by this instance usefull when running multiple instances of the controller.
+# expects either an empty string "" or a comma seperated list of namespaces without spaces eg "ns-1,ns-2,ns-3".
+monitorNamespacs: ""
+
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -15,6 +33,8 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
+
+imagePullSecrets: []
 
 podAnnotations: {}
 
