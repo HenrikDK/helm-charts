@@ -4,60 +4,60 @@ metadata:
   name: {{ include "kong-portal-controller.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "kong-portal-controller.labels" . | nindent 4 }}
+    {{- include "kong-portal-controller.controller.labels" . | nindent 4 }}
 spec:
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      {{- include "kong-portal-controller.selectorLabels" . | nindent 6 }}
+      {{- include "kong-portal-controller.controller.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
+      {{- with .Values.controller.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "kong-portal-controller.selectorLabels" . | nindent 8 }}
+        {{- include "kong-portal-controller.controller.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+      {{- with .Values.controller.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "kong-portal-controller.serviceAccountName" . }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml .Values.controller.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ include "kong-portal-controller.fullname" . }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: {{ .Values.image.url }}
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+            {{- toYaml .Values.controller.securityContext | nindent 12 }}
+          image: {{ .Values.controller.image.url }}
+          imagePullPolicy: {{ .Values.controller.image.pullPolicy }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.controller.resources | nindent 12 }}
           env:
             - name: ingress-suffix
-              value: {{ .Values.ingressSuffix }}
+              value: {{ .Values.controller.ingressSuffix }}
             - name: kong-token
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.kongTokenSecret }}
+                  name: {{ .Values.controller.kongTokenSecret }}
                   key: token
                   optional: false
             - name: kong-admin-url
-              value: {{ .Values.kongAdminUrl }}
+              value: {{ .Values.controller.kongAdminUrl }}
             - name: monitor-namespaces
-              value: {{ .Values.monitorNamespacs }}
+              value: {{ .Values.controller.monitorNamespacs }}
 
-      {{- with .Values.nodeSelector }}
+      {{- with .Values.controller.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.affinity }}
+      {{- with .Values.controller.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.tolerations }}
+      {{- with .Values.controller.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
