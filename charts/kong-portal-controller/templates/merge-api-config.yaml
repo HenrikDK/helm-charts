@@ -1,0 +1,16 @@
+{{- if .Values.mergeApi.enabled -}}
+apiVersion: "henrik.dk/v1"
+kind: KongApiConfig
+metadata:
+  name: api
+  namespace: {{ .Release.Namespace }}
+spec:
+  title: {{ .Values.mergeApi.title | quote }}
+  description: {{ .Values.mergeApi.description | quote }}
+  termsUrl: {{ .Values.mergeApi.termsUrl | quote }}
+  contactEmail: {{ .Values.mergeApi.contactEmail | quote }}
+  licenseName: {{ .Values.mergeApi.licenseName | quote }}
+  licenseUrl: {{ .Values.mergeApi.licenseUrl | quote }}
+  securityScheme: {{ .Values.mergeApi.SecurityScheme | quote }}
+  securityKeyName: {{ .Values.mergeApi.SecurityKeyName | quote }}
+{{- end }}
