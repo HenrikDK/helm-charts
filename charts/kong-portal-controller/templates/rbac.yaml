@@ -1,0 +1,25 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: portal-controller
+rules:
+- apiGroups: ['henrik.dk']
+  resources: ['*']
+  verbs: ['*']
+- apiGroups:
+    - ''
+  resources: ['services', 'pods']
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "kong-portal-controller.serviceAccountName" . }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: portal-controller
+subjects:
+- kind: ServiceAccount
+  name: {{ include "kong-portal-controller.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
