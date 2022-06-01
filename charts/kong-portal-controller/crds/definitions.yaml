@@ -19,13 +19,13 @@ spec:
                   type: integer
                 swagger:
                   type: string
-  scope: Namespaced
   names:
+    kind: KongApi
     plural: kong-apis
     singular: kong-api
-    kind: KongApi
     shortNames:
       - ka
+  scope: Namespaced
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -48,12 +48,12 @@ spec:
                   type: string
                 updated:
                   type: string
-  scope: Namespaced
   names:
-    plural: kong-api-data
     kind: KongApiData
+    plural: kong-api-data
     shortNames:
       - kaj
+  scope: Namespaced
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -88,9 +88,9 @@ spec:
                   type: string
                 securityKeyName:
                   type: string
-  scope: Namespaced
   names:
-    plural: kong-api-configs
     kind: KongApiConfig
+    plural: kong-api-configs
     shortNames:
       - kac
+  scope: Namespaced
