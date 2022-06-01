@@ -31,11 +31,11 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
-Common labels
+Controller labels.
 */}}
-{{- define "kong-portal-controller.labels" -}}
+{{- define "kong-portal-controller.controller.labels" -}}
 helm.sh/chart: {{ include "kong-portal-controller.chart" . }}
-{{ include "kong-portal-controller.selectorLabels" . }}
+{{ include "kong-portal-controller.controller.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -43,20 +43,43 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
-Selector labels
+Controller Selector labels.
 */}}
-{{- define "kong-portal-controller.selectorLabels" -}}
+{{- define "kong-portal-controller.controller.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "kong-portal-controller.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
-Create the name of the service account to use
+Create the name of the service account to use.
 */}}
 {{- define "kong-portal-controller.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
 {{- default (include "kong-portal-controller.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
 {{- end }}
+
+{{/*
+Create name for the portal ui service.
+*/}}
+{{- define "kong-portal-controller.portal.fullname" -}}
+{{- printf "%s-%s" (include "kong-portal-controller.fullname" .) "ui" }}
+{{- end }}
+
+{{/*
+Portal labels.
+*/}}
+{{- define "kong-portal-controller.portal.labels" -}}
+helm.sh/chart: {{ include "kong-portal-controller.chart" . }}
+{{ include "kong-portal-controller.portal.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
+Portal Selector labels.
+*/}}
+{{- define "kong-portal-controller.portal.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "kong-portal-controller.portal.fullname" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
