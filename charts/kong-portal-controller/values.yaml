@@ -11,7 +11,7 @@ serviceAccount:
 
 controller: 
   image:
-    url: "henrikdk/kong-portal-controller:20220504-8504537"
+    url: "henrikdk/kong-portal-controller:20220601-ad1c5bf"
     pullPolicy: IfNotPresent
   
   # Specify the ingress suffix (eg sub-domain.domain.tld) of API's deployed to the cluster that this instance of the portal controller will handle.
