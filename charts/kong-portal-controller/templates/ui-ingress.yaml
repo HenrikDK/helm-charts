@@ -1,0 +1,28 @@
+{{- if .Values.portal.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "kong-portal-controller.portal.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  {{- with .Values.portal.ingressAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  ingressClassName: {{ .Values.portal.ingressClassName }}
+  tls:
+    - hosts:
+        - {{ .Values.portal.ingress }}
+      secretName: {{ include "kong-portal-controller.portal.fullname" . }}
+  rules:
+    - host: {{ .Values.portal.ingress }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "kong-portal-controller.portal.fullname" . }}
+                port:
+                  number: 8080
+{{- end }}
