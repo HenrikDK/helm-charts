@@ -1,0 +1,6 @@
+apiVersion: v2
+name: delta-force
+appVersion: "1.0.1"
+version: 1.0.1
+description: DB Migration tool using flat sql scripts and git, supports, MSSQL, MySQL, MariaDB, PostgreSQL
+type: application
