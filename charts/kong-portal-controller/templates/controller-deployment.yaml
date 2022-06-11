@@ -48,6 +48,8 @@ spec:
               value: {{ .Values.controller.kongAdminUrl }}
             - name: monitor-namespaces
               value: {{ .Values.controller.monitorNamespacs }}
+            - name: kong-update
+              value: {{ .Values.controller.kongUpdate }}
 
       {{- with .Values.controller.nodeSelector }}
       nodeSelector:
