@@ -1,6 +1,29 @@
 apiVersion: v1
 entries:
+  delta-force:
+  - apiVersion: v2
+    appVersion: 1.0.1
+    created: "2022-06-11T22:00:27.706417516Z"
+    description: DB Migration tool using flat sql scripts and git, supports, MSSQL,
+      MySQL, MariaDB, PostgreSQL
+    digest: 28fd4cebc2c44289b172f8225df15af3b891a4bd6e7266027151010e6aad2f45
+    name: delta-force
+    type: application
+    urls:
+    - https://github.com/HenrikDK/helm-charts/releases/download/delta-force-1.0.1/delta-force-1.0.1.tgz
+    version: 1.0.1
   kong-portal-controller:
+  - apiVersion: v2
+    appVersion: 1.2.2
+    created: "2022-06-11T22:00:27.861054715Z"
+    description: Automates updating the Kong developer portal when new Api services
+      are deployed
+    digest: ac3db37530fdaeefd740502eede466b85e15de5f8f6416c7467965ab8cbd7c1c
+    name: kong-portal-controller
+    type: application
+    urls:
+    - https://github.com/HenrikDK/helm-charts/releases/download/kong-portal-controller-1.2.2/kong-portal-controller-1.2.2.tgz
+    version: 1.2.2
   - apiVersion: v2
     appVersion: 1.2.1
     created: "2022-06-02T19:05:25.870003285Z"
@@ -34,4 +57,4 @@ entries:
     urls:
     - https://github.com/HenrikDK/helm-charts/releases/download/kong-portal-controller-1.0.2/kong-portal-controller-1.0.2.tgz
     version: 1.0.2
-generated: "2022-06-02T19:05:25.870028785Z"
+generated: "2022-06-11T22:00:27.861295315Z"
