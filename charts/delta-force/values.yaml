@@ -1,0 +1,56 @@
+# Use these fields to override the name of the deployment
+nameOverride: ""
+
+image:
+  url: "henrikdk/delta-force:20220112-0b97042"
+  pullPolicy: IfNotPresent
+
+database:
+  # Specify the database type, delta force support valid values are "pgsql, mariadb, mysql, mssql" defaults to mssql
+  type: "mssql"
+
+  # An valid ado .net connection string for the database type in question.
+  connectionString: ""
+
+git: 
+  # .git url of the repository that can be used with an ssh key
+  repository: ""
+
+  # branch name eg. main / master / dev / tst / uat
+  branch: ""
+
+  # folder path in the repository defaults to "/"
+  path: "/"
+
+  # name of the secret that contains the ssh key used to access the git repository. 
+  sshKeySecret: ""
+
+imagePullSecrets: []
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources: {}
+  # Not enabled by default, but values are provided as guidance.
+  # limits:
+  #   cpu: 500m
+  #   memory: 256Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 60Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
