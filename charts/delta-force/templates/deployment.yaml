@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "delta-force.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "delta-force.labels" . | nindent 4 }}
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      {{- include "delta-force.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "delta-force.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+      - name: {{ include "delta-force.name" . }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        image: {{ .Values.image.url }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+        env:
+          - name: database-type
+            value: {{ .Values.database.type | quote }}
+          - name: connection-string
+            value: {{ .Values.database.connectionString | quote }}
+          - name: git-repository
+            value: {{ .Values.git.repository | quote }}
+          - name: git-branch
+            value: {{ .Values.git.branch | quote }}
+          - name: git-path
+            value: {{ .Values.git.path | quote }}
+          - name: "git-ssh-key-path"
+            value: "/etc/git.key"
+        volumeMounts:
+          - name: git-key
+            mountPath: "/etc/git.key"
+            readOnly: true
+        volumes:
+          - name: git-key
+            secret:
+              secretName: {{ .Values.git.sshKeySecret | quote }}
+              optional: false
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
