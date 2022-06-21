@@ -14,6 +14,17 @@ entries:
     version: 1.0.1
   kong-portal-controller:
   - apiVersion: v2
+    appVersion: 1.2.5
+    created: "2022-06-21T21:19:57.691484653Z"
+    description: Automates updating the Kong developer portal when new Api services
+      are deployed
+    digest: 2db0d94ac3eb9fd00fd17d98f0bbe990f03cc3f520f011d33a4175c82f948539
+    name: kong-portal-controller
+    type: application
+    urls:
+    - https://github.com/HenrikDK/helm-charts/releases/download/kong-portal-controller-1.2.5/kong-portal-controller-1.2.5.tgz
+    version: 1.2.5
+  - apiVersion: v2
     appVersion: 1.2.4
     created: "2022-06-16T21:37:29.098651484Z"
     description: Automates updating the Kong developer portal when new Api services
@@ -68,4 +79,4 @@ entries:
     urls:
     - https://github.com/HenrikDK/helm-charts/releases/download/kong-portal-controller-1.0.2/kong-portal-controller-1.0.2.tgz
     version: 1.0.2
-generated: "2022-06-16T21:37:29.098668684Z"
+generated: "2022-06-21T21:19:57.691505854Z"
