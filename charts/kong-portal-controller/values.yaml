@@ -11,7 +11,7 @@ serviceAccount:
 
 controller: 
   image:
-    url: "henrikdk/kong-portal-controller:20220602-0701b37"
+    url: "henrikdk/kong-portal-controller:20220621-057288b"
     pullPolicy: IfNotPresent
   
   # Specify the ingress suffix (eg sub-domain.domain.tld) of API's deployed to the cluster that this instance of the portal controller will handle.
@@ -92,7 +92,7 @@ mergeApi:
 # Enabling this feature deployes a UI service to expose the merged api and creates an ingress to allow access to the documentation.
 portal:
   image:
-    url: "henrikdk/kong-portal-ui:20220602-0701b37"
+    url: "henrikdk/kong-portal-ui:20220621-057288b"
     pullPolicy: IfNotPresent
 
   enabled: false
