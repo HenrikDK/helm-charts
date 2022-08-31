@@ -1,0 +1,6 @@
+apiVersion: v2
+name: skooner-lite
+appVersion: "1.0.1"
+version: 1.0.1
+description: Read Only version of the Skooner kubernetes dashboard for look but don't touch access.
+type: application
