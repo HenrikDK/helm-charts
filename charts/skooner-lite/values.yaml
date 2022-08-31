@@ -10,7 +10,7 @@ serviceAccount:
   name: ""
 
 image:
-  url: "henrikdk/kong-portal-ui:20220621-057288b"
+  url: "henrikdk/skooner-lite:20220831-f28d659"
   pullPolicy: IfNotPresent
 
 # Optional list of namespace prefixes that will be accessible from this instance, usefull when running multiple instances of skooner lite.
