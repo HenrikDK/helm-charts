@@ -79,4 +79,16 @@ entries:
     urls:
     - https://github.com/HenrikDK/helm-charts/releases/download/kong-portal-controller-1.0.2/kong-portal-controller-1.0.2.tgz
     version: 1.0.2
-generated: "2022-06-21T21:19:57.691505854Z"
+  skooner-lite:
+  - apiVersion: v2
+    appVersion: 1.0.1
+    created: "2022-08-31T20:45:38.693867216Z"
+    description: Read Only version of the Skooner kubernetes dashboard for look but
+      don't touch access.
+    digest: e23ba0112bc998a5d4eab90cee5ec270907f97b2d10be7c84a58efcdc0002a2e
+    name: skooner-lite
+    type: application
+    urls:
+    - https://github.com/HenrikDK/helm-charts/releases/download/skooner-lite-1.0.1/skooner-lite-1.0.1.tgz
+    version: 1.0.1
+generated: "2022-08-31T20:45:38.693891818Z"
