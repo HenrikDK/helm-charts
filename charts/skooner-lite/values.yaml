@@ -1,0 +1,57 @@
+# Use these fields to override the name of the deployment
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+image:
+  url: "henrikdk/kong-portal-ui:20220621-057288b"
+  pullPolicy: IfNotPresent
+
+# Optional list of namespace prefixes that will be accessible from this instance, usefull when running multiple instances of skooner lite.
+# Expects either an empty string, a single value suffix or a list of suffixes with out spaces eg. "-dev,-tst,-uat"
+namespaceFilter: ""
+
+# Ingress url where the dashboard will be reachable
+ingress: ""
+
+# Ingress class for the deployed ingress.
+ingressClass: ""
+
+# Annotations added to the ingress:
+ingressAnnotations: {}
+
+imagePullSecrets: []
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources: {}
+  # Not enabled by default, but values are provided as guidance.
+  # limits:
+  #   cpu: 500m
+  #   memory: 256Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 60Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
