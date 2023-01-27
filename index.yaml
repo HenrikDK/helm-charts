@@ -81,6 +81,17 @@ entries:
     version: 1.0.2
   skooner-lite:
   - apiVersion: v2
+    appVersion: 1.0.4
+    created: "2023-01-27T19:49:01.676052592Z"
+    description: Read Only version of the Skooner kubernetes dashboard for look but
+      don't touch access.
+    digest: 2ecdf7963c322baec72c27f9f3b766cb1f026c2c2b05265691a325900e119cf7
+    name: skooner-lite
+    type: application
+    urls:
+    - https://github.com/HenrikDK/helm-charts/releases/download/skooner-lite-1.0.4/skooner-lite-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
     appVersion: 1.0.3
     created: "2022-09-19T18:55:04.04823045Z"
     description: Read Only version of the Skooner kubernetes dashboard for look but
@@ -113,4 +124,4 @@ entries:
     urls:
     - https://github.com/HenrikDK/helm-charts/releases/download/skooner-lite-1.0.1/skooner-lite-1.0.1.tgz
     version: 1.0.1
-generated: "2022-09-19T18:55:04.048299151Z"
+generated: "2023-01-27T19:49:01.676104093Z"
