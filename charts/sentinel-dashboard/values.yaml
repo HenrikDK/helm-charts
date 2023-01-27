@@ -1,0 +1,59 @@
+# Use these fields to override the name of the deployment
+nameOverride: ""
+fullnameOverride: ""
+
+image:
+  url: "henrikdk/sentinel-dashboard-ui:20230127-1c9172c"
+  pullPolicy: IfNotPresent
+
+# Optional list of namespace prefixes that will be accessible from this instance.
+# Expects either an empty string, a single value prefixes or a list of prefixes with out spaces eg. "value,other,third"
+namespaceFilter: ""
+
+# Url to the humio instances API endpoint, defaults to humio cloud.
+humioApi: "https://cloud.humio.com"
+
+# Name of the humio repository that will act as a source for all error data.
+humioRepository: ""
+
+# Name of the secret that contains the access token used to access the Humio API. The secret must have the token value provided in the 'token' key.
+humioTokenSecret: ""
+
+# Ingress url where the dashboard will be reachable
+ingress: ""
+
+# Ingress class for the deployed ingress.
+ingressClass: ""
+
+# Annotations added to the ingress:
+ingressAnnotations: {}
+
+imagePullSecrets: []
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources: {}
+  # Not enabled by default, but values are provided as guidance.
+  # limits:
+  #   cpu: 500m
+  #   memory: 256Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 60Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
