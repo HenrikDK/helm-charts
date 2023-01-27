@@ -79,6 +79,18 @@ entries:
     urls:
     - https://github.com/HenrikDK/helm-charts/releases/download/kong-portal-controller-1.0.2/kong-portal-controller-1.0.2.tgz
     version: 1.0.2
+  sentinel-dashboard:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-01-27T19:51:42.547264434Z"
+    description: A lightweight tool to help .Net developers work with the output of
+      serilog's structured json logs.
+    digest: a05baae14ea67890d3ce569fa36d021f85cbc4c3d961f3456bc3d8616e37e6c7
+    name: sentinel-dashboard
+    type: application
+    urls:
+    - https://github.com/HenrikDK/helm-charts/releases/download/sentinel-dashboard-1.0.0/sentinel-dashboard-1.0.0.tgz
+    version: 1.0.0
   skooner-lite:
   - apiVersion: v2
     appVersion: 1.0.4
@@ -124,4 +136,4 @@ entries:
     urls:
     - https://github.com/HenrikDK/helm-charts/releases/download/skooner-lite-1.0.1/skooner-lite-1.0.1.tgz
     version: 1.0.1
-generated: "2023-01-27T19:49:01.676104093Z"
+generated: "2023-01-27T19:51:42.547282634Z"
