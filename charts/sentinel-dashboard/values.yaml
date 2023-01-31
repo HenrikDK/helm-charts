@@ -3,7 +3,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 image:
-  url: "henrikdk/sentinel-dashboard-ui:20230127-1c9172c"
+  url: "henrikdk/sentinel-dashboard-ui:20230131-4e926e3"
   pullPolicy: IfNotPresent
 
 # Optional list of namespace prefixes that will be accessible from this instance.
