@@ -81,6 +81,17 @@ entries:
     version: 1.0.2
   sentinel-dashboard:
   - apiVersion: v2
+    appVersion: 1.1.1
+    created: "2023-02-01T14:53:03.376541568Z"
+    description: A lightweight tool to help .Net developers work with the output of
+      serilog's structured json logs.
+    digest: 3cc10ecb0b35719ff9abf92fa5e44cf0e9f013055d6f795416746309d2faf5d7
+    name: sentinel-dashboard
+    type: application
+    urls:
+    - https://github.com/HenrikDK/helm-charts/releases/download/sentinel-dashboard-1.1.1/sentinel-dashboard-1.1.1.tgz
+    version: 1.1.1
+  - apiVersion: v2
     appVersion: 1.1.0
     created: "2023-01-31T21:28:39.894009178Z"
     description: A lightweight tool to help .Net developers work with the output of
@@ -147,4 +158,4 @@ entries:
     urls:
     - https://github.com/HenrikDK/helm-charts/releases/download/skooner-lite-1.0.1/skooner-lite-1.0.1.tgz
     version: 1.0.1
-generated: "2023-01-31T21:28:39.894202078Z"
+generated: "2023-02-01T14:53:03.37656457Z"
