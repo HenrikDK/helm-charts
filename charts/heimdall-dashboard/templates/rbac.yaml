@@ -32,12 +32,15 @@ rules:
   - list
   - watch
   - proxy
+{{ if .Values.dashboard.canRestartPods }}
 - apiGroups:
   - "*"
   resources:
   - pods
   verbs:
   - delete
+{{ end }}
+{{ if .Values.dashboard.canScalePods }}
 - apiGroups:
   - "*"
   resources:
@@ -46,6 +49,8 @@ rules:
   - replicationcontrollers/scale
   verbs:
   - put
+  - patch
+{{ end }}
 - nonResourceURLs:
   - "*"
   verbs:
