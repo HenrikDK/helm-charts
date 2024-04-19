@@ -32,15 +32,21 @@ rules:
   - list
   - watch
   - proxy
-{{ if .Values.dashboard.canRestartPods }}
+- nonResourceURLs:
+  - "*"
+  verbs:
+  - get
+  - list
+  - watch
+{{- if .Values.dashboard.canRestartPods }}
 - apiGroups:
   - "*"
   resources:
   - pods
   verbs:
   - delete
-{{ end }}
-{{ if .Values.dashboard.canScalePods }}
+{{- end }}
+{{- if .Values.dashboard.canScalePods }}
 - apiGroups:
   - "*"
   resources:
@@ -50,13 +56,7 @@ rules:
   verbs:
   - put
   - patch
-{{ end }}
-- nonResourceURLs:
-  - "*"
-  verbs:
-  - get
-  - list
-  - watch
+{{- end }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
