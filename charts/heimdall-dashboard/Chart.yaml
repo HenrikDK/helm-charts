@@ -1,0 +1,6 @@
+apiVersion: v2
+name: heimdall-dashboard
+appVersion: "0.1.0"
+version: 0.1.0
+description: Heimdall kubernetes dashboard for limited access.
+type: application
