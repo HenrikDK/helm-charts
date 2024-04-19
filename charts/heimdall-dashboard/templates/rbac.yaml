@@ -17,9 +17,12 @@ rules:
   - services
   - services/proxy
   - deployments
+  - deployments/scale
   - daemonsets
   - replicasets
+  - replicasets/scale
   - replicationcontrollers
+  - replicationcontrollers/scale
   - replicationcontrollers/status
   - statefulsets
   - horizontalpodautoscalers
