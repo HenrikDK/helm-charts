@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "skooner-lite.fullname" . }}
+  name: {{ include "heimdall.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "skooner-lite.labels" . | nindent 4 }}
+    {{- include "heimdall.labels" . | nindent 4 }}
 spec:
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      {{- include "skooner-lite.selectorLabels" . | nindent 6 }}
+      {{- include "heimdall.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,17 +18,17 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "skooner-lite.selectorLabels" . | nindent 8 }}
+        {{- include "heimdall.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "skooner-lite.serviceAccountName" . }}
+      serviceAccountName: {{ include "heimdall.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ include "skooner-lite.fullname" . }}
+        - name: {{ include "heimdall.fullname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: {{ .Values.image.url }}
