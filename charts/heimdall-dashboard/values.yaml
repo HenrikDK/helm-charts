@@ -30,10 +30,9 @@ dashboard:
   # Metrics type, can be either "cluster" for an in-cluster metrics service, or "external"
   metricsType: "cluster"
 
-  # Username and password used for accessing the metrics service via basic auth http headers (values can also be provided via fromEnv).
-  # These values if provided are used for both 'cluster' and 'external' metrics services, and can be disabled by leaving the value empty (default).
-  metricsUser: ""
-  metricsPassword: ""
+  # Secret with credentials for access prometheus. Secret must contain a username and password key.
+  # These values if provided are used for both 'cluster' and 'external' metrics services, if no credentials are required leave empty (default).
+  metricsSecretName: ""
 
   # Name of the in cluster service that ca be used to access the prometheus api, defaults to "prometheus-server"
   clusterMetricsService: "prometheus-server"
