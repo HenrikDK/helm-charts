@@ -62,6 +62,9 @@ ingressClass: ""
 # Annotations added to the ingress:
 ingressAnnotations: {}
 
+# Option to add more labels
+podLabels: []
+
 imagePullSecrets: []
 
 podAnnotations: {}

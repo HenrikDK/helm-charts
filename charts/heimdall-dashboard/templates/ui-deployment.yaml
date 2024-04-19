@@ -17,7 +17,10 @@ spec:
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.podLabels }}
       labels:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
         {{- include "heimdall.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
@@ -36,10 +39,40 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
-            - name: APP_MODE
-              value: "ReadOnly"
-            - name: NAMESPACE_FILTERS
-              value: {{ .Values.namespaceFilter }}
+            {{- if .Values.dashboard.metricsSecretName }}
+            - name: metrics_user
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.dashboard.metricsSecretName }}
+                  key: username
+                  optional: False
+            - name: metrics_password
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.dashboard.metricsSecretName }}
+                  key: password
+                  optional: false
+            {{- end }}
+            - name: metrics
+              value: {{ .Values.dashboard.metrics | quote }}
+            - name: metrics_type
+              value: {{ .Values.dashboard.metricsType | quote }}
+            - name: filters
+              value: {{ .Values.dashboard.namespaceFilters | quote }}
+            - name: can_restart_pods
+              value: {{ .Values.dashboard.canRestartPods | quote }}
+            - name: can_scale_pods
+              value: {{ .Values.dashboard.canScalePods | quote }}
+            - name: cluster_metrics_service
+              value: {{ .Values.dashboard.clusterMetricsService | quote }}
+            - name: cluster_metrics_namespace
+              value: {{ .Values.dashboard.clusterMetricsNamespace | quote }}
+            - name: cluster_metrics_port
+              value: {{ .Values.dashboard.clusterMetricsPort | quote }}
+            - name: external_metrics_url
+              value: {{ .Values.dashboard.externalMetricsUrl | quote }}
+            - name: external_metrics_headers
+              value: {{ .Values.dashboard.externalMetricsHeaders | quote }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
