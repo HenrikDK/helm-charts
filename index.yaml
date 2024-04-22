@@ -12,6 +12,17 @@ entries:
     urls:
     - https://github.com/HenrikDK/helm-charts/releases/download/delta-force-1.0.1/delta-force-1.0.1.tgz
     version: 1.0.1
+  heimdall-dashboard:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-04-22T18:56:15.646605822Z"
+    description: Heimdall kubernetes dashboard for limited access.
+    digest: 818f5f1961f6b13afc28c11719cc21748d0c1ec05a5a35337b502a4da17ebd05
+    name: heimdall-dashboard
+    type: application
+    urls:
+    - https://github.com/HenrikDK/helm-charts/releases/download/heimdall-dashboard-0.1.0/heimdall-dashboard-0.1.0.tgz
+    version: 0.1.0
   kong-portal-controller:
   - apiVersion: v2
     appVersion: 1.2.5
@@ -158,4 +169,4 @@ entries:
     urls:
     - https://github.com/HenrikDK/helm-charts/releases/download/skooner-lite-1.0.1/skooner-lite-1.0.1.tgz
     version: 1.0.1
-generated: "2023-02-01T14:53:03.37656457Z"
+generated: "2024-04-22T18:56:15.646639585Z"
