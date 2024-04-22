@@ -1,0 +1,103 @@
+# Use these fields to override the name of the deployment
+nameOverride: ""
+fullnameOverride: ""
+
+image:
+  url: "henrikdk/heimdall-dashboard-ui:20240415-71c151e"
+  pullPolicy: IfNotPresent
+
+dashboard: 
+  # Comma seperated list of namespace match params that will determine the namespaces accessible from this instance (Optional, default empty string).
+  # usefull when running multiple instances of heimdall, or wanting to restrict access to specific namespaces. 
+  # Each value can either be either: 
+  #  1. The full name of a namespace eg. 'prometheus' 
+  #  2. A prefix value beginning with ^ eg. '^grafana' will match all namespaces starting with grafana 
+  #  3. A suffix value ending with $ eg. "-dev$" will match all namespaces ending with '-dev'
+  # A full example matching multiple namespaces with different patterns could thus be: "^grafana,-dev$,prometheus".
+  # While the prefix and suffix format borrow some regex sematics, the service does not support *full* regular expressions.
+  namespaceFilters: ""
+
+  # Provision cluster role that allows deletion of pods, and enable the dashboard feature 
+  canRestartPods: False
+
+  # Provision cluster role that allows patching deployments and statefullsets, and enable the dashboard feature 
+  canScalePods: False
+
+  # Show prometheus metrics in the ui, these metrics depend on re-labelling and intervals described here:
+  # https://github.com/lensapp/lens/blob/master/troubleshooting/custom-prometheus.md
+  metrics: False
+
+  # Metrics type, can be either "cluster" for an in-cluster metrics service, or "external"
+  metricsType: "cluster"
+
+  # Secret with credentials for access prometheus. Secret must contain a username and password key.
+  # These values if provided are used for both 'cluster' and 'external' metrics services, if no credentials are required leave empty (default).
+  metricsSecretName: ""
+
+  # Name of the in cluster service that ca be used to access the prometheus api, defaults to "prometheus-server"
+  clusterMetricsService: "prometheus-server"
+
+  # Port of the in cluster service that ca be used to access the prometheus api, defaults to 80
+  clusterMetricsPort: 80
+
+  # Namespace of the in cluster service that ca be used to access the prometheus api, defaults to "prometheus"
+  clusterMetricsNamespace: "prometheus"
+
+  # Url of an external prometheus compatible api endpoint to query for metrics (default empty string), usefull in organisations that are using centralized metrics collection.
+  externalMetricsUrl: ""
+
+  # Comma seperated list of HTTP header pairs to be sent as part of the request to external metrics service, 
+  # This is typically required by multi tenant systems like cortex and grafana Mimir. (Optional, default empty string)
+  # while each header pair is seperated by a ',' the header name and header value is seperated by a ':'
+  # a full example could look like this: "X-SomeHeader:MyFirstValue,X-SomeOtherHeader:MySecondValue"
+  externalMetricsHeaders: ""
+
+
+# Ingress url where the dashboard will be reachable
+ingress: ""
+
+# Ingress class for the deployed ingress.
+ingressClass: ""
+
+# Annotations added to the ingress:
+ingressAnnotations: {}
+
+# Option to add more labels
+podLabels: []
+
+imagePullSecrets: []
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources: {}
+  # Not enabled by default, but values are provided as guidance.
+  # limits:
+  #   cpu: 500m
+  #   memory: 256Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 60Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+serviceAccount:
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""

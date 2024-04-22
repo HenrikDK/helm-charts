@@ -1,0 +1,75 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "heimdall.fullname" . }}
+rules:
+- apiGroups:
+  - "*"
+  resources:
+  - events
+  - namespaces
+  - namespaces/status
+  - nodes
+  - pods
+  - pods/log
+  - pods/status
+  - poddisruptionbudgets  
+  - services
+  - services/proxy
+  - deployments
+  - deployments/scale
+  - daemonsets
+  - replicasets
+  - replicasets/scale
+  - replicationcontrollers
+  - replicationcontrollers/scale
+  - replicationcontrollers/status
+  - statefulsets
+  - horizontalpodautoscalers
+  - cronjobs
+  - jobs
+  - ingresses
+  - bindings
+  verbs:
+  - get
+  - list
+  - watch
+  - proxy
+- nonResourceURLs:
+  - "*"
+  verbs:
+  - get
+  - list
+  - watch
+{{- if .Values.dashboard.canRestartPods }}
+- apiGroups:
+  - "*"
+  resources:
+  - pods
+  verbs:
+  - delete
+{{- end }}
+{{- if .Values.dashboard.canScalePods }}
+- apiGroups:
+  - "*"
+  resources:
+  - deployments/scale
+  - replicasets/scale
+  - replicationcontrollers/scale
+  verbs:
+  - put
+  - patch
+{{- end }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "heimdall.serviceAccountName" . }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "heimdall.fullname" . }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "heimdall.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
